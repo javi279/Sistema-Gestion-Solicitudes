@@ -68,14 +68,20 @@ if (isset($_GET['id'])) {
           <h1>Editar Solicitud</h1>
           <form action="solicitud_actualizar.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $solicitud['id']; ?>">
+            
+            <!-- Título -->
             <div class="form-group">
               <label for="titulo">Título</label>
               <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $solicitud['titulo']; ?>" required>
             </div>
+            
+            <!-- Descripción -->
             <div class="form-group">
               <label for="descripcion">Descripción</label>
               <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><?php echo $solicitud['descripcion']; ?></textarea>
             </div>
+            
+            <!-- Área -->
             <div class="form-group">
               <label for="area">Área</label>
               <select class="form-control" id="area" name="area_id" required>
@@ -87,6 +93,8 @@ if (isset($_GET['id'])) {
                 <?php } ?>
               </select>
             </div>
+            
+            <!-- Empleado -->
             <div class="form-group">
               <label for="empleado">Empleado</label>
               <select class="form-control" id="empleado" name="empleado_id" required>
@@ -98,6 +106,8 @@ if (isset($_GET['id'])) {
                 <?php } ?>
               </select>
             </div>
+            
+            <!-- Vecino -->
             <div class="form-group">
               <label for="nombre_vecino">Nombre del Vecino</label>
               <input type="text" class="form-control" id="nombre_vecino" name="nombre_vecino" value="<?php echo $solicitud['nombre_vecino']; ?>" required>
@@ -110,7 +120,8 @@ if (isset($_GET['id'])) {
               <label for="dpi_vecino">DPI del Vecino</label>
               <input type="text" class="form-control" id="dpi_vecino" name="dpi_vecino" value="<?php echo $solicitud['dpi_vecino']; ?>" required>
             </div>
-            <!-- Nueva lista desplegable para el estado -->
+            
+            <!-- Estado -->
             <div class="form-group">
               <label for="estado">Estado de la Solicitud</label>
               <select class="form-control" id="estado" name="estado_id" required>
@@ -122,6 +133,8 @@ if (isset($_GET['id'])) {
                 <?php } ?>
               </select>
             </div>
+            
+            <!-- Botones -->
             <button type="submit" class="btn btn-primary">Actualizar Solicitud</button>
             <a href="solicitudes.php" class="btn btn-secondary">Cancelar</a>
           </form>

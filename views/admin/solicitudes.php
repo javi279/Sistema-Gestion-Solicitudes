@@ -78,6 +78,13 @@ $solicitudes = $solicitud_model->obtenerSolicitudesCompletas();
                       <td>
                         <a href="solicitud_editar.php?id=<?php echo $solicitud['id']; ?>" class="btn btn-warning btn-sm">Ver/Editar</a>
                         <a href="solicitud_eliminar.php?id=<?php echo $solicitud['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');">Eliminar</a>
+                        
+                        <!-- Botones para Aceptar y Rechazar -->
+                        <form action="solicitud_cambiar_estado.php" method="POST" style="display:inline;">
+                          <input type="hidden" name="id" value="<?php echo $solicitud['id']; ?>">
+                          <button type="submit" name="estado" value="4" class="btn btn-success btn-sm">Aceptar</button>
+                          <button type="submit" name="estado" value="5" class="btn btn-danger btn-sm">Rechazar</button>
+                        </form>
                       </td>
                     </tr>
                     <?php } ?>

@@ -18,12 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $telefono_vecino = $_POST['telefono_vecino'];
         $dpi_vecino = $_POST['dpi_vecino'];
         $fecha_creacion = date('Y-m-d H:i:s'); // Fecha actual
+        $estado_id = '1'; // Estado predeterminado (1 para 'Pendiente')
 
         // Crear una instancia del modelo de solicitudes
         $solicitud_model = new SolicitudModel($pdo);
 
         // Llamar al método para guardar la solicitud con los nuevos campos
-        $resultado = $solicitud_model->crearSolicitud($titulo, $descripcion, $area_id, $empleado_id, $nombre_vecino, $telefono_vecino, $dpi_vecino, $fecha_creacion);
+        $resultado = $solicitud_model->crearSolicitud($titulo, $descripcion, $area_id, $empleado_id, $nombre_vecino, $telefono_vecino, $dpi_vecino, $fecha_creacion, $estado_id);
 
         // Verificar si la solicitud se creó correctamente
         if ($resultado) {

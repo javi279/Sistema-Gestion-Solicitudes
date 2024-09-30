@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $descripcion = $_POST['descripcion'];
     $area_id = $_POST['area_id'];
     $empleado_id = $_POST['empleado_id'];
-    $estado = $_POST['estado'];
+    $estado_id = $_POST['estado_id'];  // Ajustado para que use estado_id
     $nombre_vecino = $_POST['nombre_vecino'];
     $telefono_vecino = $_POST['telefono_vecino'];
     $dpi_vecino = $_POST['dpi_vecino'];
@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $solicitud_model = new SolicitudModel($pdo);
 
     // Llamar al método para actualizar la solicitud
-    $resultado = $solicitud_model->actualizarSolicitud($id, $titulo, $descripcion, $area_id, $empleado_id, $estado, $nombre_vecino, $telefono_vecino, $dpi_vecino);
+    $resultado = $solicitud_model->actualizarSolicitud($id, $titulo, $descripcion, $area_id, $empleado_id, $estado_id, $nombre_vecino, $telefono_vecino, $dpi_vecino);
 
     // Verificar si la solicitud se actualizó correctamente
     if ($resultado) {
-        // Redirigir a la lista de solicitudes
+        // Redirigir a la lista de solicitudes con un mensaje de éxito
         header('Location: solicitudes.php?mensaje=actualizado');
         exit;
     } else {
