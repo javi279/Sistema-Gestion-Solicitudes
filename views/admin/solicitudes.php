@@ -10,6 +10,24 @@ $solicitud_model = new SolicitudModel($pdo);
 
 // Obtener todas las solicitudes con detalles completos
 $solicitudes = $solicitud_model->obtenerSolicitudesCompletas();
+
+// Función para convertir el estado_id en texto legible
+function obtenerEstadoTexto($estado_id) {
+    switch ($estado_id) {
+        case 1:
+            return "En proceso";
+        case 2:
+            return "Pendiente";
+        case 3:
+            return "Finalizada";
+        case 4:
+            return "Aceptada";
+        case 5:
+            return "Rechazada";
+        default:
+            return "Desconocido";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +92,7 @@ $solicitudes = $solicitud_model->obtenerSolicitudesCompletas();
                       <td><?php echo htmlspecialchars($solicitud['descripcion']); ?></td>
                       <td><?php echo htmlspecialchars($solicitud['area_nombre']); ?></td>
                       <td><?php echo htmlspecialchars($solicitud['empleado_nombre']); ?></td>
-                      <td><?php echo htmlspecialchars($solicitud['estado']); ?></td>
+                      <td><?php echo obtenerEstadoTexto($solicitud['estado_id']); ?></td> <!-- Mostrar el estado en formato de texto -->
                       <td>
                         <a href="solicitud_editar.php?id=<?php echo $solicitud['id']; ?>" class="btn btn-warning btn-sm">Ver/Editar</a>
                         <a href="solicitud_eliminar.php?id=<?php echo $solicitud['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');">Eliminar</a>
@@ -82,8 +100,8 @@ $solicitudes = $solicitud_model->obtenerSolicitudesCompletas();
                         <!-- Botones para Aceptar y Rechazar -->
                         <form action="solicitud_cambiar_estado.php" method="POST" style="display:inline;">
                           <input type="hidden" name="id" value="<?php echo $solicitud['id']; ?>">
-                          <button type="submit" name="estado" value="4" class="btn btn-success btn-sm">Aceptar</button>
-                          <button type="submit" name="estado" value="5" class="btn btn-danger btn-sm">Rechazar</button>
+                          <button type="submit" name="estado_id" value="4" class="btn btn-success btn-sm">Aceptar</button>
+                          <button type="submit" name="estado_id" value="5" class="btn btn-danger btn-sm">Rechazar</button>
                         </form>
                       </td>
                     </tr>

@@ -138,13 +138,25 @@ class SolicitudModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function cambiarEstadoSolicitud($id, $estado) {
-        $sql = "UPDATE solicitudes SET estado = :estado WHERE id = :id";
+    public function cambiarEstadoSolicitud($id, $estado_id) {
+        $sql = "UPDATE solicitudes SET estado_id = :estado_id WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':estado', $estado);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':estado_id', $estado_id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
     
+    // Método para obtener las solicitudes por estado
+    public function obtenerSolicitudesPorEstado($estado_id) {
+        $sql = "SELECT s.id, s.titulo, s.descripcion, a.nombre AS area_nombre, e.nombre AS empleado_nombre, s.estado_id
+                FROM solicitudes s
+                JOIN areas a ON s.area_id = a.id
+                JOIN empleados e ON s.empleado_id = e.id
+                WHERE s.estado_id = :estado_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':estado_id', $estado_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

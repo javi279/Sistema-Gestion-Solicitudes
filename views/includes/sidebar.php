@@ -56,15 +56,49 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario D
                 <li class="nav-item">
                     <a href="../admin/solicitudes.php" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Solicitudes</p>
+                        <p>Ver Todas</p>
                     </a>
                 </li>
 
-                <!-- Crear Solicitud -->
                 <li class="nav-item">
                     <a href="../admin/solicitud_crear.php" class="nav-link">
-                        <i class="nav-icon fas fa-plus"></i>
+                        <i class="fas fa-plus nav-icon"></i>
                         <p>Crear Solicitud</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../admin/solicitudes_aceptadas.php" class="nav-link">
+                        <i class="fas fa-check-circle nav-icon"></i>
+                        <p>Aceptadas</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../admin/solicitudes_enproceso.php" class="nav-link">
+                        <i class="fas fa-spinner nav-icon"></i>
+                        <p>En Proceso</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../admin/solicitudes_pendientes.php" class="nav-link">
+                        <i class="fas fa-hourglass-start nav-icon"></i>
+                        <p>Pendientes</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../admin/solicitudes_finalizadas.php" class="nav-link">
+                        <i class="fas fa-check nav-icon"></i>
+                        <p>Finalizadas</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../admin/solicitudes_rechazadas.php" class="nav-link">
+                        <i class="fas fa-times-circle nav-icon"></i>
+                        <p>Rechazadas</p>
                     </a>
                 </li>
 
