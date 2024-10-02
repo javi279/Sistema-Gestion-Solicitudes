@@ -1,5 +1,5 @@
 <?php
-// solicitudes_pendientes.php
+// solicitudes_finalizadas.php
 
 // Incluye el archivo de configuración y el modelo
 require_once '../../config/config.php';
@@ -8,8 +8,8 @@ require_once '../../models/SolicitudModel.php';
 // Crear una instancia del modelo de solicitud
 $solicitud_model = new SolicitudModel($pdo);
 
-// Obtener las solicitudes con estado "pendiente" (estado_id = 1)
-$solicitudes = $solicitud_model->obtenerSolicitudesPorEstado(1);
+// Obtener las solicitudes con estado "finalizada" (estado_id = 3)
+$solicitudes = $solicitud_model->obtenerSolicitudesPorEstado(3);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ $solicitudes = $solicitud_model->obtenerSolicitudesPorEstado(1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Solicitudes Pendientes</title>
+    <title>Solicitudes Finalizadas</title>
     <link rel="stylesheet" href="/Sistema_Gestion_Solicitudes/public/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="/Sistema_Gestion_Solicitudes/public/plugins/fontawesome-free/css/all.min.css">
 </head>
@@ -30,7 +30,7 @@ $solicitudes = $solicitud_model->obtenerSolicitudesPorEstado(1);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Solicitudes Pendientes</h1>
+                            <h1>Solicitudes Finalizadas</h1>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ $solicitudes = $solicitud_model->obtenerSolicitudesPorEstado(1);
                                         <?php } ?>
                                     <?php } else { ?>
                                         <tr>
-                                            <td colspan="6">No hay solicitudes pendientes.</td>
+                                            <td colspan="6">No hay solicitudes finalizadas.</td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

@@ -56,7 +56,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario D
                 <li class="nav-item">
                     <a href="../admin/solicitudes.php" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Ver Todas</p>
+                        <p>Todas las Solicitudes</p>
                     </a>
                 </li>
 

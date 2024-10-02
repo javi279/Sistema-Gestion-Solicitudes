@@ -83,8 +83,8 @@ $solicitudes_recientes = $solicitud_model->obtenerSolicitudesRecientes();
             <div class="col-lg-3 col-6">
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3><?php echo isset($estadisticas['solicitudes_resueltas']) ? $estadisticas['solicitudes_resueltas'] : 'N/A'; ?></h3>
-                  <p>Solicitudes Resueltas</p>
+                  <h3><?php echo isset($estadisticas['solicitudes_aceptadas']) ? $estadisticas['solicitudes_aceptadas'] : 'N/A'; ?></h3>
+                  <p>Solicitudes Aceptadas</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-check-circle"></i>
@@ -96,11 +96,11 @@ $solicitudes_recientes = $solicitud_model->obtenerSolicitudesRecientes();
             <div class="col-lg-3 col-6">
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3><?php echo isset($estadisticas['solicitudes_altaprioridad']) ? $estadisticas['solicitudes_altaprioridad'] : 'N/A'; ?></h3>
-                  <p>Solicitudes de Alta Prioridad</p>
+                  <h3><?php echo isset($estadisticas['solicitudes_finalizadas']) ? $estadisticas['solicitudes_finalizadas'] : 'N/A'; ?></h3>
+                  <p>Solicitudes Finalizadas</p>
                 </div>
                 <div class="icon">
-                  <i class="fas fa-exclamation-triangle"></i>
+                  <i class="fas fa-check-circle"></i>
                 </div>
               </div>
             </div>
@@ -180,17 +180,22 @@ $solicitudes_recientes = $solicitud_model->obtenerSolicitudesRecientes();
   <script>
     // Gráfica de estado de solicitudes
     var ctxEstado = document.getElementById('estadoSolicitudesChart').getContext('2d');
-    var estadoSolicitudesChart = new Chart(ctxEstado, {
-      type: 'bar',
-      data: {
-        labels: ['Pendiente', 'En Proceso', 'Finalizado'],
-        datasets: [{
-          label: '# de Solicitudes',
-          data: [<?php echo $estadisticas['solicitudes_pendientes'] ?? 0; ?>, 19, <?php echo $estadisticas['solicitudes_resueltas'] ?? 0; ?>], // Cambia estos valores con datos reales
-          backgroundColor: ['#f39c12', '#00c0ef', '#00a65a']
-        }]
-      }
-    });
+var estadoSolicitudesChart = new Chart(ctxEstado, {
+  type: 'bar',
+  data: {
+    labels: ['Pendiente', 'En Proceso', 'Finalizado'],
+    datasets: [{
+      label: '# de Solicitudes',
+      data: [
+        <?php echo $estadisticas['solicitudes_pendientes'] ?? 0; ?>, 
+        <?php echo $estadisticas['total_solicitudes'] ?? 0; ?>, 
+        <?php echo $estadisticas['solicitudes_finalizadas'] ?? 0; ?>
+      ], 
+      backgroundColor: ['#f39c12', '#00c0ef', '#00a65a']
+    }]
+  }
+});
+
 
     // Gráfica de solicitudes recientes
     var ctxRecientes = document.getElementById('solicitudesRecientesChart').getContext('2d');

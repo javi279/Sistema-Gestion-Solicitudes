@@ -7,13 +7,13 @@ class SolicitudModel {
     }
 
     // Obtener estadísticas (ejemplo)
-    public function obtenerEstadisticas() {
+   /* public function obtenerEstadisticas() {
         $sql = "SELECT COUNT(*) AS total_solicitudes FROM solicitudes";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetch(PDO::FETCH_ASSOC);
 
         //Solicitudes pendientes
-        $stmt = $this->pdo->query("SELECT COUNT(*) as solicitudes_pendientes FROM solicitudes WHERE estado = 'Pendiente'");
+        $stmt = $this->pdo->query("SELECT COUNT(*) as solicitudes_pendientes FROM solicitudes WHERE estado = 1");
         $estadisticas['solicitudes_pendientes'] = $stmt->fetchColumn();
 
         //Solicitudes resueltas
@@ -24,6 +24,7 @@ class SolicitudModel {
         $stmt = $this->pdo->query("SELECT COUNT(*) as solicitudes_altaprioridad FROM solicitudes WHERE prioridad = 'Alta'");
         $estadisticas['solicitudes_altaprioridad'] = $stmt->fetchColumn();
     }
+    */
 
     // Obtener solicitudes recientes (ejemplo)
     public function obtenerSolicitudesRecientes() {
@@ -158,5 +159,41 @@ class SolicitudModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function obtenerEstadisticas() {
+        $estadisticas = [];
+    
+        // Total de solicitudes
+        $query = "SELECT COUNT(*) as total_solicitudes FROM solicitudes";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $estadisticas['total_solicitudes'] = $stmt->fetchColumn();
+    
+        // Solicitudes pendientes (estado = 1)
+        $query = "SELECT COUNT(*) as solicitudes_pendientes FROM solicitudes WHERE estado_id = 1";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $estadisticas['solicitudes_pendientes'] = $stmt->fetchColumn();
+    
+        // Solicitudes aceptadas (estado = 4)
+        $query = "SELECT COUNT(*) as solicitudes_aceptadas FROM solicitudes WHERE estado_id = 4";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $estadisticas['solicitudes_aceptadas'] = $stmt->fetchColumn();
+    
+        // Solicitudes rechazadas (estado = 5)
+        $query = "SELECT COUNT(*) as solicitudes_rechazadas FROM solicitudes WHERE estado_id = 5";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $estadisticas['solicitudes_rechazadas'] = $stmt->fetchColumn();
+
+        $query = "SELECT COUNT(*) as solicitude_finalizadas FROM solicitudes WHERE estado_id = 3";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $estadisticas['solicitudes_finalizadas'] = $stmt->fetchColumn();
+    
+        return $estadisticas;
+    }
+    
 }
 ?>
