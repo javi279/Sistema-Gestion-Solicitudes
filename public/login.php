@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <body>
     <div class="container-fluid">
         <form action="login.php" method="POST" class="mx-auto">
-            <h4 class="text-center">Login</h4>
+            <h4 class="text-center">Inicio de Sesion</h4>
             
             <?php if (!empty($error)) { ?>
                 <div class="alert alert-danger text-center"><?php echo htmlspecialchars($error); ?></div>

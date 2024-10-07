@@ -48,7 +48,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario D
                 <li class="nav-item">
                     <a href="../admin/dashboard.php" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p>Panel Principal</p>
                     </a>
                 </li>
 

@@ -73,7 +73,7 @@ $empleados = $empleado_model->obtenerEmpleadosConDetalles();
                       <td><?php echo $empleado['rol']; ?></td>
                       <td>
                         <a href="empleado_editar.php?id=<?php echo $empleado['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="empleado_eliminar.php?id=<?php echo $empleado['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                        <a href="empleado_eliminar.php?id=<?php echo $empleado['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirmarEliminacion()">Eliminar</a>
                       </td>
                     </tr>
                     <?php } ?>
@@ -95,10 +95,18 @@ $empleados = $empleado_model->obtenerEmpleadosConDetalles();
     <footer class="main-footer">
       <div class="float-right d-none d-sm-inline">
       <?php include '../includes/footer.php'; ?>
-  </div>
+    </div>
 
-  <!-- Scripts necesarios -->
-  <script src="../../public/scripts/jquery.min.js"></script>
-  <script src="../../public/scripts/adminlte.min.js"></script>
+    <!-- Scripts necesarios -->
+    <script src="../../public/scripts/jquery.min.js"></script>
+    <script src="../../public/scripts/adminlte.min.js"></script>
+
+    <!-- Script para confirmar eliminación -->
+    <script>
+      function confirmarEliminacion() {
+        return confirm('¿Estás seguro de que deseas eliminar este empleado? Esta acción no se puede deshacer.');
+      }
+    </script>
+  </div>
 </body>
 </html>

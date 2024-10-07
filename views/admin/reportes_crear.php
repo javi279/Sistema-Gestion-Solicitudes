@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $html = '<h1>Reporte de Solicitudes</h1>';
         $html .= '<table border="1" cellpadding="4"><thead><tr><th>ID</th><th>Título</th><th>Descripción</th><th>Estado</th><th>Fecha de Creación</th></tr></thead><tbody>';
         foreach ($reportes as $reporte) {
-            $html .= '<tr><td>' . $reporte['id'] . '</td><td>' . $reporte['titulo'] . '</td><td>' . $reporte['descripcion'] . '</td><td>' . $reporte['estado'] . '</td><td>' . $reporte['fecha_creacion'] . '</td></tr>';
+            $html .= '<tr><td>' . $reporte['id'] . '</td><td>' . $reporte['titulo'] . '</td><td>' . $reporte['descripcion'] . '</td><td>' . $reporte['estado_id'] . '</td><td>' . $reporte['fecha_creacion'] . '</td></tr>';
         }
         $html .= '</tbody></table>';
         
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sheet->setCellValue('A' . $row, $reporte['id']);
             $sheet->setCellValue('B' . $row, $reporte['titulo']);
             $sheet->setCellValue('C' . $row, $reporte['descripcion']);
-            $sheet->setCellValue('D' . $row, $reporte['estado']);
+            $sheet->setCellValue('D' . $row, $reporte['estado_id']);
             $sheet->setCellValue('E' . $row, $reporte['fecha_creacion']);
             $row++;
         }
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <td><?php echo $reporte['id']; ?></td>
                                             <td><?php echo $reporte['titulo']; ?></td>
                                             <td><?php echo $reporte['descripcion']; ?></td>
-                                            <td><?php echo $reporte['estado']; ?></td>
+                                            <td><?php echo $reporte['estado_id']; ?></td>
                                             <td><?php echo $reporte['fecha_creacion']; ?></td>
                                         </tr>
                                         <?php } ?>

@@ -49,7 +49,6 @@ $usuarios = $usuario_model->obtenerUsuarios();
                 <th>Apellido</th>
                 <th>Email</th>
                 <th>Rol</th>
-                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -60,10 +59,6 @@ $usuarios = $usuario_model->obtenerUsuarios();
                 <td><?php echo $usuario['apellido']; ?></td>
                 <td><?php echo $usuario['email']; ?></td>
                 <td><?php echo $usuario['rol']; ?></td>
-                <td>
-                  <a href="usuario_editar.php?id=<?php echo $usuario['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                  <a href="usuario_eliminar.php?id=<?php echo $usuario['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>
-                </td>
               </tr>
               <?php } ?>
             </tbody>
