@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2024 a las 16:24:10
+-- Tiempo de generación: 07-10-2024 a las 15:43:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,7 +41,7 @@ INSERT INTO `areas` (`id`, `nombre`, `descripcion`) VALUES
 (1, 'Gestión de Residuos', 'Departamento encargado de la gestión y manejo de residuos.'),
 (2, 'Mantenimiento', 'Departamento encargado del mantenimiento de infraestructuras y equipos.'),
 (3, 'Servicios de Electricidad', 'Departamento encargado de la gestión de los Servicios de Electricidad'),
-(4, 'Mantenimiento', 'Departamento encargado del mantenimiento de infraestructuras y equipos.'),
+(4, 'Mantenimiento de Drenajes', 'Departamento encargado del mantenimiento de Drenajes'),
 (6, 'Cementerio', 'Area especifica para poder gestionar todos los asuntos relacionados con el Cementerio Municipal');
 
 -- --------------------------------------------------------
@@ -66,8 +66,8 @@ CREATE TABLE `empleados` (
 INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`) VALUES
 (1, 'Juan', 'Pérez', 'juan.perez@example.com', '482c811da5d5b4bc6d497ffa98491e38', 'Coordinador de Solicitudes'),
 (2, 'María', 'Gómez', 'maria.gomez@example.com', '96b33694c4bb7dbd07391e0be54745fb', 'Técnico de Mantenimiento'),
-(3, 'Juan', 'Pérez', 'juan.perez@example.com', '482c811da5d5b4bc6d497ffa98491e38', 'Coordinador de Solicitudes'),
-(4, 'María', 'Gómez', 'maria.gomez@example.com', '96b33694c4bb7dbd07391e0be54745fb', 'Técnico de Mantenimiento');
+(3, 'Marta', 'iglesias ', 'marta@example.com', '482c811da5d5b4bc6d497ffa98491e38', 'Coordinadora de Solicitudes'),
+(4, 'Patrick', 'Lopez', 'Patlopez@example.com', '96b33694c4bb7dbd07391e0be54745fb', 'Técnico de Mantenimiento de Drenajes');
 
 -- --------------------------------------------------------
 
@@ -130,15 +130,17 @@ CREATE TABLE `solicitudes` (
 
 INSERT INTO `solicitudes` (`id`, `titulo`, `descripcion`, `area_id`, `empleado_id`, `usuario_id`, `estado`, `fecha_creacion`, `fecha_actualizacion`, `nombre_vecino`, `telefono_vecino`, `dpi_vecino`, `estado_id`) VALUES
 (1, 'Reparación de luz', 'Se necesita reparar la luz en el edificio principal. uwu', 2, 2, 1, 'Abierto', '2024-09-11 03:23:18', '2024-10-02 17:14:12', 'Vecino Prueba 17', '11223344', '1234567891234', 2),
-(2, 'Reparacion de Tuberia', 'Reparacion en calle 111111111111111111112', 1, 1, 1, '4', '2024-09-14 14:27:53', '2024-10-01 17:31:07', 'Vecino de Prueba 1', '11223344', '1234567891234', 4),
-(6, 'Reparacion de Postes electricos', 'Se cayo durante un temblor', 2, 1, 2, 'Open', '2024-09-15 02:11:46', '2024-09-14 18:11:46', '', '', '', NULL),
-(7, 'Solicitud de Prueba :)', 'Pruebaaa', 1, 1, 3, 'Open', '2024-09-20 12:32:56', '2024-09-20 04:32:56', '', '', '', NULL),
+(2, 'Reparacion de Tuberia', 'Reparacion en calle 111111111111111111112', 1, 1, 1, '4', '2024-09-14 14:27:53', '2024-10-07 04:44:55', 'Vecino de Prueba 1', '11223344', '1234567891234', 2),
+(6, 'Reparacion de Postes electricos', 'Se cayo durante un temblor', 2, 1, 2, 'Open', '2024-09-15 02:11:46', '2024-10-07 04:51:35', '', '', '', 4),
+(7, 'Solicitud de Prueba :)', 'Pruebaaa', 1, 1, 3, 'Open', '2024-09-20 12:32:56', '2024-10-07 04:49:38', 'Vecino Prueba 7', '11223344', '1234567891234', 2),
 (8, 'Prueba 2', 'PRUEBAAA 2', 2, 1, 3, 'Pendiente', '2024-09-21 06:12:53', '2024-10-02 17:15:03', 'Vecino Prueba 14', '11223344', '1234567891234', 1),
-(10, 'PRUEBA 3', 'PRUEBAAAA 333', 3, 1, NULL, 'pendiente', '2024-09-21 07:26:28', '2024-09-20 23:26:28', 'Juan del Valle', '11223344', '123456789987', NULL),
+(10, 'PRUEBA 3', 'PRUEBAAAA 333', 3, 1, NULL, 'pendiente', '2024-09-21 07:26:28', '2024-10-07 05:36:23', 'Juan del Valle', '11223344', '123456789987', 1),
 (11, 'Prueba 4', 'PRUEBAAA 4', 6, 1, NULL, 'pendiente', '2024-09-21 07:52:45', '2024-10-01 16:28:02', 'Juan del Valle', '11223344', '123456789987', 5),
 (13, 'PRUEBA 13', 'Descripcion prueba 13', 1, 2, NULL, 'pendiente', '2024-10-01 05:28:01', '2024-10-02 17:32:44', 'Vecino Prueba 13', '11223344', '1234567891234', 1),
 (14, 'Prueba 14', 'Descripcion prueba 15', 6, 1, NULL, 'Open', '2024-10-01 05:55:42', '2024-10-02 17:41:36', 'Vecino Prueba 14', '11223344', '1234567891234', 3),
-(15, 'Prueba 15', 'Descripcion Prueba 15 Editada x2', 4, 2, NULL, '', '2024-10-01 06:38:38', '2024-10-02 17:21:15', 'Vecino Prueba 15 ', '11223344', '1234567891234', 3);
+(15, 'Prueba 15', 'Descripcion Prueba 15 Editada x2', 4, 2, NULL, '', '2024-10-01 06:38:38', '2024-10-02 17:21:15', 'Vecino Prueba 15 ', '11223344', '1234567891234', 3),
+(16, 'Solicitud hecha con el telefono', 'Fue hecha con el telefono', 4, 1, NULL, 'Open', '2024-10-07 12:56:27', '2024-10-07 04:56:44', 'Vecino de prueba telefono', '33446677', '1234567891234', 4),
+(17, 'Solicitud Empleado Prueba', 'Hecha por un empleado', 6, 4, NULL, 'Open', '2024-10-07 21:33:19', '2024-10-07 13:33:38', 'Empleado', '11223344', '1234567891234', 4);
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`) 
 (1, 'Carlos', 'Martínez', 'carlos.martinez@example.com', 'c03437ea463eaa5cb316cff4faf35a70', 'administrador'),
 (2, 'Ana', 'Hernández', 'ana.hernandez@example.com', '00cb8ad34ddd42883bcad09b27fddb79', 'usuario'),
 (3, 'Javi', 'Herrera', 'javixxherrera@gmail.com', '$2y$10$Qut5MkhKZOY/4TL1X80q1.3RVkEFUjz23nlHfEH/5ebKIP3SXUM0i', 'admin'),
-(4, 'Nery', 'Dubon', 'Nery@gmail.com', '$2y$10$AumWxhNNeDkOpWcXQMVe3.yXA251RoxS4Oi.eIrgDlLZXVzoOle/C', 'admin');
+(4, 'Nery', 'Dubon', 'Nery@gmail.com', '$2y$10$HPYsd/YE2uTxnsKhVQ2y.uUTTXVa0I8WNplZx9j9/lRtUQdQWMlte', 'admin'),
+(6, 'Usuario', 'Prueba', 'usuario@gmail.com', '$2y$10$7KRenvfMT07v/F58EZCVA.hD7ZoFcwTO.HcaH1B9v2T/X5OA9FBIq', 'empleado');
 
 --
 -- Índices para tablas volcadas
@@ -249,7 +252,7 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `estados_solicitud`
@@ -267,7 +270,7 @@ ALTER TABLE `reportes`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes_archivos`
@@ -279,7 +282,7 @@ ALTER TABLE `solicitudes_archivos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
