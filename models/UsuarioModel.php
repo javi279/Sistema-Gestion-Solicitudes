@@ -67,4 +67,25 @@ class UsuarioModel {
     return false;
 }
 
+public function actualizarContraseña($id, $nueva_contraseña) {
+    $stmt = $this->pdo->prepare("UPDATE usuarios SET password = :password WHERE id = :id");
+    $stmt->execute(['password' => password_hash($nueva_contraseña, PASSWORD_DEFAULT), 'id' => $id]);
 }
+
+public function actualizarEmail($id, $nuevo_email) {
+    $stmt = $this->pdo->prepare("UPDATE usuarios SET email = :email WHERE id = :id");
+    $stmt->execute(['email' => $nuevo_email, 'id' => $id]);
+}
+
+public function actualizarPerfil($id, $nombre, $rol) {
+    $stmt = $this->pdo->prepare("UPDATE usuarios SET nombre = :nombre, rol = :rol WHERE id = :id");
+    $stmt->execute(['nombre' => $nombre, 'rol' => $rol, 'id' => $id]);
+}
+
+public function actualizarPreferenciasNotificaciones($id, $notificaciones) {
+    $stmt = $this->pdo->prepare("UPDATE usuarios SET notificaciones = :notificaciones WHERE id = :id");
+    $stmt->execute(['notificaciones' => $notificaciones, 'id' => $id]);
+}
+}
+
+
