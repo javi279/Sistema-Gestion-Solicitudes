@@ -22,20 +22,32 @@ class EmpleadoModel {
     }
 
     // Crear un nuevo empleado
-    public function crearEmpleado($datos) {
+    public function crearEmpleado($nombre, $apellido, $email, $password, $rol) {
         $sql = "INSERT INTO empleados (nombre, apellido, email, password, rol) 
                 VALUES (:nombre, :apellido, :email, :password, :rol)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($datos);
+        $stmt->execute([
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'password' => $password,
+            'rol' => $rol
+        ]);
     }
 
     // Actualizar empleado
-    public function actualizarEmpleado($id, $datos) {
+    public function actualizarEmpleado($id, $nombre, $apellido, $email, $rol) {
         $sql = "UPDATE empleados 
                 SET nombre = :nombre, apellido = :apellido, email = :email, rol = :rol 
                 WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array_merge($datos, ['id' => $id]));
+        $stmt->execute([
+            'id' => $id,
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'rol' => $rol
+        ]);
     }
 
     // Eliminar empleado
