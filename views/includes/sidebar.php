@@ -34,7 +34,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario D
         <!-- Usuario actual -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="../../public/images/avatar2.png" class="img-circle elevation-2" alt="User Image">
+                <img src="../../public/images/avatar30.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?php echo htmlspecialchars($user_name); ?></a>
@@ -128,7 +128,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario D
 
                 <!-- Reportes -->
                 <li class="nav-item">
-                    <a href="../admin/reportes.php" class="nav-link">
+                    <a href="../admin/reportes_crear.php" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Reportes</p>
                     </a>

@@ -73,13 +73,56 @@ class ReporteModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerReportesPorFecha($fecha_inicio, $fecha_fin) {
-        $query = "SELECT id, titulo, descripcion, estado, fecha_creacion 
-                  FROM solicitudes 
-                  WHERE fecha_creacion BETWEEN :fecha_inicio AND :fecha_fin";
+    public function obtenerReportesPorFecha($fecha_inicio, $fecha_fin, $estado = null) {
+        $query = "SELECT * FROM solicitudes WHERE fecha_creacion BETWEEN :fecha_inicio AND :fecha_fin";
+    
+        if (!empty($estado)) {
+            $query .= " AND estado = :estado";
+        }
+    
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':fecha_inicio', $fecha_inicio);
         $stmt->bindParam(':fecha_fin', $fecha_fin);
+    
+        if (!empty($estado)) {
+            $stmt->bindParam(':estado', $estado);
+        }
+    
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+     // Método para obtener reportes con filtros
+     public function obtenerReportesFiltrados($estado = '', $fecha_inicio = '', $fecha_fin = '') {
+        // Consulta base
+        $query = "SELECT * FROM reportes WHERE 1=1"; 
+
+        // Agregar filtros a la consulta
+        if (!empty($estado)) {
+            $query .= " AND estado = :estado";
+        }
+        if (!empty($fecha_inicio)) {
+            $query .= " AND fecha >= :fecha_inicio";
+        }
+        if (!empty($fecha_fin)) {
+            $query .= " AND fecha <= :fecha_fin";
+        }
+
+        // Preparar la consulta
+        $stmt = $this->pdo->prepare($query);
+
+        // Asignar valores a los parámetros si existen
+        if (!empty($estado)) {
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        }
+        if (!empty($fecha_inicio)) {
+            $stmt->bindParam(':fecha_inicio', $fecha_inicio);
+        }
+        if (!empty($fecha_fin)) {
+            $stmt->bindParam(':fecha_fin', $fecha_fin);
+        }
+
+        // Ejecutar la consulta y obtener los resultados
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

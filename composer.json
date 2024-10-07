@@ -1,0 +1,11 @@
+{
+    "name": "municipalidad/sistema_gestion_solicitudes",
+    "description": "Sistema de gestion de solicitudes para la Municipalidad de San Jeronimo",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "tecnickcom/tcpdf": "^6.7",
+        "phpoffice/phpspreadsheet": "^3.3"
+    }
+}

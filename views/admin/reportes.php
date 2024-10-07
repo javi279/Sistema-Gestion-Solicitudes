@@ -44,6 +44,7 @@ $reportes = $reporte_model->obtenerReportes();
         </div>
       </section>
 
+
       <section class="content">
         <div class="container-fluid">
           <div class="card">

@@ -17,8 +17,9 @@ $reportes = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_inicio = $_POST['fecha_inicio'];
     $fecha_fin = $_POST['fecha_fin'];
+    $estado = $_POST['estado'];
 
-    $reportes = $reporte_model->obtenerReportesPorFecha($fecha_inicio, $fecha_fin);
+    $reportes = $reporte_model->obtenerReportesPorFecha($fecha_inicio, $fecha_fin, $estado);
     
     // Verificar si se solicitó la descarga en PDF
     if (isset($_POST['exportar_pdf'])) {
@@ -42,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verificar si se solicitó la descarga en Excel
     if (isset($_POST['exportar_excel'])) {
-        header('Content-Type: application/vnd.ms-excel');
+        // Cambiar las cabeceras HTTP para el archivo XLSX
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="reporte_solicitudes.xlsx"');
         header('Cache-Control: max-age=0');
-
-        require_once '../../vendor/phpoffice/phpspreadsheet/src/Bootstrap.php';
-        require_once '../../vendor/phpoffice/phpspreadsheet/src/Spreadsheet.php';
-        require_once '../../vendor/phpoffice/phpspreadsheet/src/Writer/Xlsx.php';
-
+    
+        // Asegúrate de que la ruta a PHPSpreadsheet es correcta
+        require_once '../../vendor/autoload.php'; // Carga el autoload de Composer para cargar automáticamente todas las dependencias
+    
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'ID');
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sheet->setCellValue('C1', 'Descripción');
         $sheet->setCellValue('D1', 'Estado');
         $sheet->setCellValue('E1', 'Fecha de Creación');
-
+    
         $row = 2;
         foreach ($reportes as $reporte) {
             $sheet->setCellValue('A' . $row, $reporte['id']);
@@ -67,11 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sheet->setCellValue('E' . $row, $reporte['fecha_creacion']);
             $row++;
         }
-
+    
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
     }
+    
 }
 ?>
 
@@ -103,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Filtrar por Fechas</h3>
+                            <h3 class="card-title">Filtrado de Solicitudes</h3>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="reportes_crear.php">
@@ -114,6 +116,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="form-group">
                                     <label for="fecha_fin">Fecha Fin</label>
                                     <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado">Estado</label>
+                                    <select id="estado" name="estado" class="form-control">
+                                        <option value="">Todos</option>
+                                        <option value="1">Pendiente</option>
+                                        <option value="2">En Proceso</option>
+                                        <option value="3">Completado</option>
+                                        <option value="4">Aceptado</option>
+                                        <option value="5">Rechazado</option>
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="generar_reporte">Generar Reporte</button>
                                 <button type="submit" class="btn btn-secondary" name="exportar_pdf">Exportar PDF</button>
@@ -156,6 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </section>
         </div>
+
+        
 
         <footer class="main-footer">
             <?php include '../includes/footer.php'; ?>

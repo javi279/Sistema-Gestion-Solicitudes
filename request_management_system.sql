@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2024 a las 19:01:14
+-- Tiempo de generación: 04-10-2024 a las 16:24:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,7 +40,7 @@ CREATE TABLE `areas` (
 INSERT INTO `areas` (`id`, `nombre`, `descripcion`) VALUES
 (1, 'Gestión de Residuos', 'Departamento encargado de la gestión y manejo de residuos.'),
 (2, 'Mantenimiento', 'Departamento encargado del mantenimiento de infraestructuras y equipos.'),
-(3, 'Gestión de Residuos', 'Departamento encargado de la gestión y manejo de residuos.'),
+(3, 'Servicios de Electricidad', 'Departamento encargado de la gestión de los Servicios de Electricidad'),
 (4, 'Mantenimiento', 'Departamento encargado del mantenimiento de infraestructuras y equipos.'),
 (6, 'Cementerio', 'Area especifica para poder gestionar todos los asuntos relacionados con el Cementerio Municipal');
 
@@ -129,16 +129,16 @@ CREATE TABLE `solicitudes` (
 --
 
 INSERT INTO `solicitudes` (`id`, `titulo`, `descripcion`, `area_id`, `empleado_id`, `usuario_id`, `estado`, `fecha_creacion`, `fecha_actualizacion`, `nombre_vecino`, `telefono_vecino`, `dpi_vecino`, `estado_id`) VALUES
-(1, 'Reparación de luz', 'Se necesita reparar la luz en el edificio principal. uwu', 2, 2, 1, 'Abierto', '2024-09-11 03:23:18', '2024-09-18 07:57:47', '', '', '', NULL),
+(1, 'Reparación de luz', 'Se necesita reparar la luz en el edificio principal. uwu', 2, 2, 1, 'Abierto', '2024-09-11 03:23:18', '2024-10-02 17:14:12', 'Vecino Prueba 17', '11223344', '1234567891234', 2),
 (2, 'Reparacion de Tuberia', 'Reparacion en calle 111111111111111111112', 1, 1, 1, '4', '2024-09-14 14:27:53', '2024-10-01 17:31:07', 'Vecino de Prueba 1', '11223344', '1234567891234', 4),
 (6, 'Reparacion de Postes electricos', 'Se cayo durante un temblor', 2, 1, 2, 'Open', '2024-09-15 02:11:46', '2024-09-14 18:11:46', '', '', '', NULL),
 (7, 'Solicitud de Prueba :)', 'Pruebaaa', 1, 1, 3, 'Open', '2024-09-20 12:32:56', '2024-09-20 04:32:56', '', '', '', NULL),
-(8, 'Prueba 2', 'PRUEBAAA 2', 2, 1, 3, 'Pendiente', '2024-09-21 06:12:53', '2024-09-20 22:12:53', '', '', '', NULL),
+(8, 'Prueba 2', 'PRUEBAAA 2', 2, 1, 3, 'Pendiente', '2024-09-21 06:12:53', '2024-10-02 17:15:03', 'Vecino Prueba 14', '11223344', '1234567891234', 1),
 (10, 'PRUEBA 3', 'PRUEBAAAA 333', 3, 1, NULL, 'pendiente', '2024-09-21 07:26:28', '2024-09-20 23:26:28', 'Juan del Valle', '11223344', '123456789987', NULL),
 (11, 'Prueba 4', 'PRUEBAAA 4', 6, 1, NULL, 'pendiente', '2024-09-21 07:52:45', '2024-10-01 16:28:02', 'Juan del Valle', '11223344', '123456789987', 5),
-(13, 'PRUEBA 13', 'Descripcion prueba 13', 1, 2, NULL, 'pendiente', '2024-10-01 05:28:01', '2024-09-30 21:28:01', 'Vecino Prueba 13', '11223344', '1234567891234', NULL),
-(14, 'Prueba 14', 'Descripcion prueba 15', 6, 1, NULL, 'Open', '2024-10-01 05:55:42', '2024-09-30 22:37:28', 'Vecino Prueba 14', '11223344', '1234567891234', NULL),
-(15, 'Prueba 15', 'Descripcion Prueba 15 Editada x2', 4, 2, NULL, '', '2024-10-01 06:38:38', '2024-10-01 16:24:59', 'Vecino Prueba 15 ', '11223344', '1234567891234', 4);
+(13, 'PRUEBA 13', 'Descripcion prueba 13', 1, 2, NULL, 'pendiente', '2024-10-01 05:28:01', '2024-10-02 17:32:44', 'Vecino Prueba 13', '11223344', '1234567891234', 1),
+(14, 'Prueba 14', 'Descripcion prueba 15', 6, 1, NULL, 'Open', '2024-10-01 05:55:42', '2024-10-02 17:41:36', 'Vecino Prueba 14', '11223344', '1234567891234', 3),
+(15, 'Prueba 15', 'Descripcion Prueba 15 Editada x2', 4, 2, NULL, '', '2024-10-01 06:38:38', '2024-10-02 17:21:15', 'Vecino Prueba 15 ', '11223344', '1234567891234', 3);
 
 -- --------------------------------------------------------
 
