@@ -15,9 +15,9 @@ $solicitudes = $solicitud_model->obtenerSolicitudesCompletas();
 function obtenerEstadoTexto($estado_id) {
     switch ($estado_id) {
         case 1:
-            return "En proceso";
-        case 2:
             return "Pendiente";
+        case 2:
+            return "En Proceso";
         case 3:
             return "Finalizada";
         case 4:
